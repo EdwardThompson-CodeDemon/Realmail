@@ -1,0 +1,3 @@
+rootProject.name = "Realmail"
+include ':app'
+include ':Mail'
