@@ -50,6 +50,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -137,6 +138,12 @@ findViewById(R.id.bcclay).setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View view) {
         bccEmails.requestFocus();
+    }
+});
+findViewById(R.id.page).setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View view) {
+        body_edt.requestFocus();
     }
 });
 findViewById(R.id.expand).setOnClickListener(new View.OnClickListener() {
@@ -291,10 +298,15 @@ StringBuilder errorsEncounteredBuilder=new StringBuilder();
             Button check_configuration = snackbar_view.findViewById(R.id.check_configuration);
             check_configuration.setOnClickListener((v) -> configure());
             error_content.setText("Some issues have been encountered while preparing to send the mail\n\n" + errorsEncounteredBuilder.toString());
+           snackbar_view.setFocusable(true);
+
             Toast t = new Toast(this);
+
             t.setView(snackbar_view);
             t.setDuration(Toast.LENGTH_LONG);
             t.show();
+
+
         }
 
 
