@@ -106,6 +106,10 @@ public MailBuilder setRetryCount(int retrycount){
         md.maxretrycount=retrycount;
         return this;
     }
+public MailBuilder setBodyType(MailData.messageBodyType bodytype){
+        md.bodyType=bodytype;
+        return this;
+    }
 
 
     MailData build()

@@ -58,6 +58,7 @@ import java.util.stream.Collectors;
 
 import sparta.realm.utils.Mail.MailActionCallback;
 import sparta.realm.utils.Mail.MailBuilder;
+import sparta.realm.utils.Mail.MailData;
 
 public class MainActivity extends AppCompatActivity {
 final int PICKFILE_RESULT_CODE=20;
@@ -162,22 +163,21 @@ findViewById(R.id.expand).setOnClickListener(new View.OnClickListener() {
         });
         send_mail.setOnClickListener(view -> {
             toEmails.setText(toEmails.getText().toString()+" ");
-            toEmails.setText(ccEmails.getText().toString()+" ");
-            toEmails.setText(bccEmails.getText().toString()+" ");
+            ccEmails.setText(ccEmails.getText().toString()+" ");
+            bccEmails.setText(bccEmails.getText().toString()+" ");
             if(validated()){
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-//                    List<String> listJava8= attachement_files.values().stream().collect(Collectors.toList());
                     new Thread(() -> {
                         new MailBuilder().setServer(Globals.emailConfiguration(this).server_address, Globals.emailConfiguration(this).server_port == null ? 0 : Integer.parseInt(Globals.emailConfiguration(this).server_port))
                                 .from(Globals.emailConfiguration(this).username)
-                                .setPassword(Globals.emailConfiguration(this).password)//"@capturewizard123"
+                                .setPassword(Globals.emailConfiguration(this).password)
                                 .setToEmailAddresses(toEmailArray)
                                 .setCCEmailAddresses(ccEmailArray)
                                 .setBCCEmailAddresses(bccEmailArray)
-//                              .setAttachmentPaths(new ArrayList<String>(attachement_files.values()))
                                 .setAttachmentPaths(attachement_files)
                                 .subject(subject.getText().toString())
                                 .body(body_edt.getText().toString())
+                                .setBodyType(MailData.messageBodyType.HTML)
                                 .setCallback(new MailActionCallback() {
                                     @Override
                                     public void onMailSent() {
