@@ -32,6 +32,7 @@ to send from gmail
                 .setAttachmentPaths(new HashMap<File,String>())
                 .subject("MailSubject")
                 .body("Mail body")
+                .setBodyType(MailData.messageBodyType.HTML)
                 .setCallback(new MailActionCallback() {
                     @Override
                     public void onMailSent() {
@@ -64,7 +65,7 @@ to send from gmail
                 .setAttachmentPaths(new HashMap<File,String>())
                 .subject("MailSubject")
                 .body("Mail body")
-
+                .setBodyType(MailData.messageBodyType.HTML)
                 .setCallback(new MailActionCallback() {
                     @Override
                     public void onMailSent() {
