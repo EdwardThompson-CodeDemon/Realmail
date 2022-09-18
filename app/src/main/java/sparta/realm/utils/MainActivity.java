@@ -232,7 +232,8 @@ findViewById(R.id.expand).setOnClickListener(new View.OnClickListener() {
 
 
                 }
-            }        });
+            }
+        });
         from.setText(Globals.emailConfiguration(this).username);
 
     }
